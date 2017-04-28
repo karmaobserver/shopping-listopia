@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.makso.shopping_listopia.R;
+import com.example.makso.shopping_listopia.data.models.Article;
 import com.example.makso.shopping_listopia.data.models.ShoppingList;
 import com.example.makso.shopping_listopia.data.repos.ArticleRepo;
 import com.example.makso.shopping_listopia.data.repos.ShoppingListRepo;
@@ -54,30 +55,31 @@ public class ShoppingListActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(shoppingList.getName());
 
         //Attach adapter on ListView with Articles
-       /* ArticleRepo articleRepo = new ArticleRepo();
+        ArticleRepo articleRepo = new ArticleRepo();
         Cursor cursor = articleRepo.getArticlesByShoppingListId(idShoppingList);
         adapter = new ArticlesCursorAdapter(this, cursor, 0);
 
-        ListView listView = (ListView) findViewById(R.id.listViewShoppingLists);
+        ListView listView = (ListView) findViewById(R.id.listViewArticles);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d("KONACNI", "JEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE: ");
-                ShoppingListRepo shoppingListRepo = new ShoppingListRepo();
-                Cursor cursor = shoppingListRepo.getShoppingListsCursor();
-                cursor = shoppingListRepo.retrieveRow(id);
+                ArticleRepo articleRepo1 = new ArticleRepo();
+                //Cursor cursor = articleRepo1.getShoppingListsCursor();
+                Cursor cursor;
+                cursor = articleRepo1.retrieveRow(id);
 
-                Log.d("KONACNI", "qwe: " + cursor.getString(cursor.getColumnIndex(ShoppingList.COLUMN_ID)));
+                Log.d("KONACNI", "qwe: " + cursor.getString(cursor.getColumnIndex(Article.COLUMN_ID)));
 
-                int idShoppingList = cursor.getInt(cursor.getColumnIndex(ShoppingList.COLUMN_ID));
-                Intent shoppingListIntent = new Intent(view.getContext(), ShoppingListActivity.class);
-                shoppingListIntent.putExtra("idShoppingList", idShoppingList);
+                int idArticle = cursor.getInt(cursor.getColumnIndex(Article.COLUMN_ID));
+               // Intent shoppingListIntent = new Intent(view.getContext(), ShoppingListActivity.class);
+                //shoppingListIntent.putExtra("idShoppingList", idShoppingList);
                 //startActivityForResult(shoppingListIntent, 0);
-                startActivity(shoppingListIntent);
+                //startActivity(shoppingListIntent);
             }
-        });*/
+        });
 
 
 

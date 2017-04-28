@@ -12,7 +12,7 @@
         android:layout_marginStart="@dimen/item_shoppinglist_margin_left">
 
         <TextView
-            android:id="@+id/name"
+            android:id="@+id/articleName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"

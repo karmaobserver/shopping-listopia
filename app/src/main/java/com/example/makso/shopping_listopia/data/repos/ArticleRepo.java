@@ -26,7 +26,7 @@ public class ArticleRepo {
 
     public static String createTable(){
         return "CREATE TABLE " + Article.TABLE  + "("
-                + Article.COLUMN_ID  + " INTEGER PRIMARY KEY,"
+                + Article.COLUMN_ID  + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + Article.COLUMN_DONE + " TEXT,"
                 + Article.COLUMN_AMOUNT + " TEXT,"
                 + Article.COLUMN_SP_ID + " TEXT,"
@@ -38,7 +38,7 @@ public class ArticleRepo {
         int articleId;
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
         ContentValues values = new ContentValues();
-        values.put(Article.COLUMN_ID, article.getId());
+        //values.put(Article.COLUMN_ID, article.getId());
         values.put(Article.COLUMN_NAME, article.getName());
         values.put(Article.COLUMN_DONE, article.isDone());
         values.put(Article.COLUMN_AMOUNT, article.getAmount());
@@ -61,6 +61,7 @@ public class ArticleRepo {
     public Cursor getArticlesByShoppingListId(int id) {
         String selectQuery =  " SELECT Article." + Article.COLUMN_ID
                 + ", Article." + Article.COLUMN_NAME
+                + ", Article." + Article.COLUMN_AMOUNT
                 + ", ShoppingList." + ShoppingList.COLUMN_NAME
                 + ", COUNT('') AS Total"
                 + " FROM " + ShoppingList.TABLE
@@ -69,12 +70,21 @@ public class ArticleRepo {
                 + " ORDER BY Article." + Article.COLUMN_NAME
                 ;
 
-
-
         Log.d("Articles", "by id quert" + selectQuery);
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         // DatabaseManager.getInstance().closeDatabase();    Don't forget to close connection
         return cursor;
+    }
+
+    public Cursor retrieveRow(long rowId) {
+        String[] resultColumns = new String[] {Article.COLUMN_NAME, Article.COLUMN_AMOUNT, Article.COLUMN_ID};
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+        Cursor row = db.query(true,Article.TABLE, resultColumns, Article.COLUMN_ID +"=" +rowId, null, null, null, null,null);
+        if(row != null){
+            row.moveToFirst();
+        }
+        DatabaseManager.getInstance().closeDatabase();
+        return row;
     }
 }

@@ -70,7 +70,8 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d("KONACNI", "JEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE: ");
                 ShoppingListRepo shoppingListRepo = new ShoppingListRepo();
-                Cursor cursor = shoppingListRepo.getShoppingListsCursor();
+                //Cursor cursor = shoppingListRepo.getShoppingListsCursor();
+                Cursor cursor;
                 cursor = shoppingListRepo.retrieveRow(id);
 
                 Log.d("KONACNI", "qwe: " + cursor.getString(cursor.getColumnIndex(ShoppingList.COLUMN_ID)));
@@ -148,13 +149,43 @@ public class MainActivity extends AppCompatActivity {
         article.setName("Voce");
         article.setAmount(3);
         article.setDone(true);
-        article.setSp_id(2);
+        article.setSp_id(0);
         articleRepo.insert(article);
 
         article.setName("Povrce");
         article.setAmount(4);
         article.setDone(true);
+        article.setSp_id(1);
+        articleRepo.insert(article);
+
+        article.setName("Zelenis");
+        article.setAmount(2);
+        article.setDone(true);
         article.setSp_id(2);
+        articleRepo.insert(article);
+
+        article.setName("Sunka");
+        article.setAmount(8);
+        article.setDone(true);
+        article.setSp_id(3);
+        articleRepo.insert(article);
+
+        article.setName("Slanina");
+        article.setAmount(4);
+        article.setDone(true);
+        article.setSp_id(4);
+        articleRepo.insert(article);
+
+        article.setName("Povrce");
+        article.setAmount(4);
+        article.setDone(true);
+        article.setSp_id(1);
+        articleRepo.insert(article);
+
+        article.setName("paradajz");
+        article.setAmount(1);
+        article.setDone(true);
+        article.setSp_id(0);
         articleRepo.insert(article);
     }
 
