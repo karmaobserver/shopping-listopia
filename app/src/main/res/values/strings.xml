@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Listopia</string>
+    <string name="poruka">ASDADADA</string>
+    <string name="button_positiv">OK</string>
+    <string name="button_negative">Cancle</string>
+    <string name="button_neutral">No</string>
+    <string name="button_add">Add</string>
+    <string name="add_name">Type name</string>
+
 </resources>

@@ -1,4 +1,4 @@
-package com.example.makso.shopping_listopia.models;
+package com.example.makso.shopping_listopia.data.models;
 
 /**
  * Created by Makso on 4/26/2017.
@@ -6,7 +6,16 @@ package com.example.makso.shopping_listopia.models;
 
 public class ShoppingList {
 
-    private Long id;
+    public static final String TAG = ShoppingList.class.getSimpleName();
+    public static final String TABLE = "ShoppingList";
+
+    // Labels Table Columns names
+    public static final String COLUMN_ID = "_id";
+    public static final String COLUMN_NAME = "name";
+    public static final String COLUMN_DONE = "done";
+    public static final String COLUMN_PASSWORD = "password";
+
+    private int id;
     private String name;
     private boolean done;
     private String password;
@@ -14,18 +23,18 @@ public class ShoppingList {
     public ShoppingList() {
     }
 
-    public ShoppingList(Long id, String name, boolean done, String password) {
+    public ShoppingList(int id, String name, boolean done, String password) {
         this.id = id;
         this.name = name;
         this.done = done;
         this.password = password;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
