@@ -51,9 +51,15 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
-        //Initzialize data
-        InitData initData = new InitData();
-        initData.insertSampleData();
+        //Check if Database is empty
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+        cursor = db.rawQuery("SELECT * FROM " + ShoppingList.TABLE, null);
+        if(cursor.getCount() == 0) {
+            //Initzialize data
+            InitData initData = new InitData();
+            initData.insertSampleData();
+        }
+        DatabaseManager.getInstance().closeDatabase();
 
         // Getting All ShoppingLists (I used it only to test database for first time, i use cursorAdapter now)
         readingShoppingLists();
@@ -71,13 +77,10 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d("KONACNI", "JEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE: ");
                 ShoppingListRepo shoppingListRepo = new ShoppingListRepo();
                 //Cursor cursor = shoppingListRepo.getShoppingListsCursor();
                 Cursor cursor;
                 cursor = shoppingListRepo.retrieveRow(id);
-
-                Log.d("KONACNI", "qwe: " + cursor.getString(cursor.getColumnIndex(ShoppingList.COLUMN_ID)));
 
                 int idShoppingList = cursor.getInt(cursor.getColumnIndex(ShoppingList.COLUMN_ID));
                 Intent shoppingListIntent = new Intent(view.getContext(), ShoppingListActivity.class);

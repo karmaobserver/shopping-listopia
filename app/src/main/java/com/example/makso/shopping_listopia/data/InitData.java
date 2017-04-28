@@ -130,6 +130,5 @@ public class InitData {
         article.setSp_id(5);
         articleRepo.insert(article);
 
-
     }
 }
