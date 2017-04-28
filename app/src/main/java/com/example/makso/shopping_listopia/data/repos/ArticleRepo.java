@@ -59,16 +59,8 @@ public class ArticleRepo {
 
     // getArticlesByShoppingListId Cursor
     public Cursor getArticlesByShoppingListId(int id) {
-        String selectQuery =  " SELECT Article." + Article.COLUMN_ID
-                + ", Article." + Article.COLUMN_NAME
-                + ", Article." + Article.COLUMN_AMOUNT
-                + ", ShoppingList." + ShoppingList.COLUMN_NAME
-                + ", COUNT('') AS Total"
-                + " FROM " + ShoppingList.TABLE
-                + " INNER JOIN " + Article.TABLE + " Article ON Article." + Article.COLUMN_ID + "=  ShoppingList." + ShoppingList.COLUMN_ID
-                + " GROUP BY Article." + Article.COLUMN_SP_ID + ", Article." + Article.COLUMN_NAME
-                + " ORDER BY Article." + Article.COLUMN_NAME
-                ;
+
+        String selectQuery = "SELECT * FROM " + Article.TABLE + " WHERE " + Article.COLUMN_SP_ID + " IN (" + id +")";
 
         Log.d("Articles", "by id quert" + selectQuery);
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();

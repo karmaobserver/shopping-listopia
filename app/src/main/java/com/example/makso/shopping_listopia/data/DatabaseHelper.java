@@ -19,9 +19,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //version number to upgrade database version
     //each time if you Add, Edit table, you need to change the
     //version number.
-    private static final int DATABASE_VERSION = 51;
+    private static final int DATABASE_VERSION = 58;
     // Database Name
-    private static final String DATABASE_NAME = "listopia37.db";
+    private static final String DATABASE_NAME = "listopia44.db";
     private static final String TAG = DatabaseHelper.class.getSimpleName().toString();
 
     public DatabaseHelper( ) {

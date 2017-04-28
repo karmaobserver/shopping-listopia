@@ -21,6 +21,7 @@ import android.view.View.OnClickListener;
 import com.example.makso.shopping_listopia.activities.ShoppingListActivity;
 import com.example.makso.shopping_listopia.data.DatabaseHelper;
 import com.example.makso.shopping_listopia.data.DatabaseManager;
+import com.example.makso.shopping_listopia.data.InitData;
 import com.example.makso.shopping_listopia.data.models.Article;
 import com.example.makso.shopping_listopia.data.models.ShoppingList;
 import com.example.makso.shopping_listopia.data.repos.ArticleRepo;
@@ -50,7 +51,9 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
-        insertSampleData();
+        //Initzialize data
+        InitData initData = new InitData();
+        initData.insertSampleData();
 
         // Getting All ShoppingLists (I used it only to test database for first time, i use cursorAdapter now)
         readingShoppingLists();
@@ -117,77 +120,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-    private void insertSampleData() {
-
-        ShoppingListRepo shoppingListRepo = new ShoppingListRepo();
-        ArticleRepo articleRepo   = new ArticleRepo();
-
-        shoppingListRepo.delete();
-        articleRepo.delete();
-
-        ShoppingList shoppingList = new ShoppingList();
-        Article article = new Article();
-
-        Log.d("CREATION", "Creating dummies");
-
-        shoppingList.setName("PERA");
-        shoppingList.setPassword("qeqe");
-        shoppingList.setDone(true);
-        shoppingListRepo.insert(shoppingList);
-
-        shoppingList.setName("zika");
-        shoppingList.setPassword("zzzzz");
-        shoppingList.setDone(false);
-        shoppingListRepo.insert(shoppingList);
-
-        shoppingList.setName("Tika");
-        shoppingList.setPassword("ttttttttt");
-        shoppingList.setDone(false);
-        shoppingListRepo.insert(shoppingList);
-
-        article.setName("Voce");
-        article.setAmount(3);
-        article.setDone(true);
-        article.setSp_id(0);
-        articleRepo.insert(article);
-
-        article.setName("Povrce");
-        article.setAmount(4);
-        article.setDone(true);
-        article.setSp_id(1);
-        articleRepo.insert(article);
-
-        article.setName("Zelenis");
-        article.setAmount(2);
-        article.setDone(true);
-        article.setSp_id(2);
-        articleRepo.insert(article);
-
-        article.setName("Sunka");
-        article.setAmount(8);
-        article.setDone(true);
-        article.setSp_id(3);
-        articleRepo.insert(article);
-
-        article.setName("Slanina");
-        article.setAmount(4);
-        article.setDone(true);
-        article.setSp_id(4);
-        articleRepo.insert(article);
-
-        article.setName("Povrce");
-        article.setAmount(4);
-        article.setDone(true);
-        article.setSp_id(1);
-        articleRepo.insert(article);
-
-        article.setName("paradajz");
-        article.setAmount(1);
-        article.setDone(true);
-        article.setSp_id(0);
-        articleRepo.insert(article);
-    }
 
     private void readingShoppingLists() {
 
